@@ -17,7 +17,7 @@ public class User {
 
     public void withdraw() {}
 
-    public boolean hasBankAccount() {
+    private boolean hasBankAccount() {
         return bank_account != null;
     }
 
@@ -29,7 +29,7 @@ public class User {
         return this.name;
     }
 
-    public boolean dataIsValid() {
+    private boolean dataIsValid() {
         if (name == null || name.length() < 5) {
             System.out.println("Error: Name can't be empty or less than 5 letters!");
             return false;
