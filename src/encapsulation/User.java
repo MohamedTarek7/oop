@@ -3,69 +3,36 @@ package encapsulation;
 public class User {
     private String name;
     private String id;
-    private int age;
-    private String birth;
-    private BankAccount bank_account;
+    private String account_number;
 
-    public User(String name, String id, int age, String birth, BankAccount bank_account) {
+    public User(String name, String id) {
         this.name = name;
         this.id = id;
-        this.age = age;
-        this.birth = birth;
-        this.bank_account = bank_account;
-    }
-
-    public void withdraw() {}
-
-    private boolean hasBankAccount() {
-        return bank_account != null;
-    }
-
-    public BankAccount geBankAccount() {
-        return this.bank_account;
     }
 
     public String getUserName() {
         return this.name;
     }
 
-    private boolean dataIsValid() {
-        if (name == null || name.length() < 5) {
-            System.out.println("Error: Name can't be empty or less than 5 letters!");
-            return false;
-        }
-
-        if (id == null || id.length() < 5) {
-            System.out.println("Error: ID most be 5 digits!");
-            return false;
-        }
-
-        if (age < 16) {
-            System.out.println("Error: Age most be 16 or above!");
-            return false;
-        }
-
-        if (bank_account == null) {
-            System.out.println("Error: You should have at least one bank account!");
-            return false;
-        }
-
-        if (birth == null || birth.length() < 10) {
-            System.out.println("Error: Date of birth most be 10 digits!...\nUse: dd-mm-yyyy / 01-06-2000");
-            return false;
-        }
-
-        return true;
+    public String getId() {
+        return this.id;
     }
 
-    public String getUserInfo() {
-        if (dataIsValid()) {
-            return "User [Name: " + name + ", Age: " + age + ", Birth: " + birth + ", Bank Account: "
-                    + bank_account.getAccountNumber() + ", ID: "
-                    + id + "]";
+    public String getAccount_number() {
+        if (account_number != null) {
+            return account_number;
         } else {
-            return "Fix: follow the error message!";
+            return "This user does not have a bank account!";
         }
     }
 
+    public void setAccount_number(String account_number) {
+        this.account_number = account_number;
+    }
+
+    public String toString() {
+        return "User [Name: " + name + ", ID: "
+                + id + ", Account Number: "
+                + account_number + "]";
+    }
 }

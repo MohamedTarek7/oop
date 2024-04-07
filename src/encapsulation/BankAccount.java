@@ -3,27 +3,47 @@ package encapsulation;
 public class BankAccount {
     private double balance;
     private String account_number;
-    private String account_holder;
-    private boolean account_status;
+    private User account_holder;
 
-    public BankAccount(double balance, String account_number, String account_holder, boolean account_status) {
+    public BankAccount(double balance, String account_number, User account_holder) {
         this.balance = balance;
         this.account_number = account_number;
         this.account_holder = account_holder;
-        this.account_status = account_status;
-    }
-
-    public boolean hasAccess(User user) {
-        return user.geBankAccount() == this ? true : false;
+        account_holder.setAccount_number(account_number);
     }
 
     public String getAccountNumber() {
-        return account_number;
+        if (this.hasAccess()) {
+            return account_number;
+        } else {
+            return "Unautherized access!";
+        }
     }
 
-    public String getAccountInfo() {
+    public double getBalance() {
+        if (this.hasAccess()) {
+            return balance;
+        } else {
+            System.out.println("Unautherized access!");
+            return 1;
+        }
+    }
+
+    public User getAccountHolderInfo() {
+        if (hasAccess()) {
+            return account_holder;
+        } else {
+            System.out.println("Unautherized access!");
+            return null;
+        }
+    }
+
+    public boolean hasAccess() {
+        return account_number == account_holder.getAccount_number();
+    }
+
+    public String toString() {
         return "BankAccount [Balance: " + balance + ", Account Number: " + account_number + ", Account Holder: "
-                + account_holder + ", Account Status: " + account_status + "]";
+                + account_holder + "]";
     }
-
 }
